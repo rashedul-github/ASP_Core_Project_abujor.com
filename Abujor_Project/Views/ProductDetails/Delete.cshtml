@@ -1,0 +1,39 @@
+﻿@model ProductDetail
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="row">
+    <div class="col s6 offset-s3">
+        <div class="card" style="padding:5px;">
+            <div class="card-title">
+                <h4>Are you sure to delete this?</h4>
+            </div>
+            <div class="card-content">
+                <div>
+                    <h5>Size: @Model.Size</h5>
+                </div>
+                <div>
+                    <h5>Quantity: @Model.Quantity</h5>
+                </div>
+                <div>
+                    <h5>Color: @Model.Color</h5>
+                </div>
+                <div>
+                    <h5>Product: @Model.Product.ProductModel</h5>
+                </div>
+            </div>
+            <div class="card-action">
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" asp-for="ProductDetailId" />
+                    <button type="submit" class="btn btn-small red">Delete</button>
+                </form>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+﻿@model ProductDetail
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="card">
+    
+    <div class="card-content">
+        <div class="card-title">
+            <h5>View details of product model: @Model.Product.ProductModel</h5>
+        </div>
+        <div>
+            <img src="@Model.Product.Picture" width="40" />
+        </div>
+        <h6>Size: @Model.Size</h6>
+        <h6>Quantity: @Model.Quantity</h6>
+        <h6>Color  @Model.Color</h6>
+        <h6>Description: @Model.Description</h6>
+    </div>
+    <div class="card-action">
+        <a asp-action="Index" asp-controller="Products">Back to list</a>
+    </div>
+</div>
+

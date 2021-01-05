@@ -1,0 +1,88 @@
+﻿@model Order
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Order here</h4>
+
+<hr />
+<div class="row" style="display:flex;justify-content:center">
+    <div class="col s10">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProductId" value="@ViewBag.ProductId"/>
+            <div class="row">
+                <div class="input-field col s8">
+                    <input type="text" asp-for="OrderDate" class="datepicker" value="@DateTime.Now.ToString("dd-MM-yyyy")" />
+                    <label asp-for="OrderDate"></label>
+                    <span asp-validation-for="OrderDate" style="color:red;"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <input asp-for="CustomerName" />
+                    <label asp-for="CustomerName"></label>
+                    <span asp-validation-for="CustomerName" style="color:red;"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <input type="number" asp-for="CustomerPhone" />
+                    <label asp-for="CustomerPhone"></label>
+                    <span asp-validation-for="CustomerPhone" style="color:red;"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <input asp-for="CustomerEmail" />
+                    <label asp-for="CustomerEmail"></label>
+                    <span asp-validation-for="CustomerEmail" style="color:red;"></span>
+                </div>
+            </div>
+            @*<div class="row">
+                <div class="input-field col s8">
+                    <select class="form-control"
+                            asp-for="ProductId"
+                            
+                            asp-items="@(new SelectList(ViewBag.GetProduct, "ProductId","ProductModel"))">
+                        <option value="">- Select -</option>
+                    </select>
+                    <label>Product*</label>
+                    <span asp-validation-for="ProductId" style="color:red;"></span>
+                </div>
+            </div>*@
+            <div class="row">
+                <div class="input-field col s8">
+                    <textarea asp-for="Address" class="materialize-textarea"></textarea>
+                    <label asp-for="Address"></label>
+                    <span asp-validation-for="Address" style="color:red;"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s8">
+                    <button type="submit" class="btn btn-small">Save</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script>
+        $(document).ready(() => {
+            $('.datepicker').datepicker();
+            $('select').formSelect();
+        });
+    </script>
+    <script src="~/libs/validate/jquery.validate.js"></script>
+    <script src="~/libs/validate/jquery.validate.unobtrusive.js"></script>
+}
+

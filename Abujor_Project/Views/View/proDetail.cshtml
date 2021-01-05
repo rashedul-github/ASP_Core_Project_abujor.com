@@ -1,0 +1,48 @@
+﻿@model ProductDetail
+@{
+    ViewData["Title"] = "proDetail";
+}
+@section styles{
+    <style>
+        .third_image {
+            height: 200px;
+            max-height: 200px;
+            object-fit: contain;
+        }
+    </style>
+}
+<div class="row">
+    <div class="col s6 offset-l3">
+        <div class="card">
+            <div class="card-image">
+                <img class="materialboxed third_image" src="@Model.Product.Picture">
+            </div>
+            <div class="card-content">
+                <div class="card-title">
+                    <h6>View details of model: @Model.Product.ProductModel</h6>
+                </div>
+                <p>Size: @Model.Size</p>
+                <p>Quantity: @Model.Quantity</p>
+                <p>Color: @Model.Color</p>
+                <p>Price: @Model.Product.ProductPrice.ToString("0.00")</p>
+                <p>Description: @Model.Description</p>
+            </div>
+            <div class="card-action">
+                <a asp-action="Create" class="btn btn-small" asp-controller="View" asp-route-id="@Model.Product.ProductId">Order Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="display:flex;justify-content:center;padding-bottom:50px;">
+    <a asp-action="Index" asp-controller="View">Back to list</a>
+</div>
+
+
+
+@section scripts{
+    <script>
+       $(document).ready(() => {
+           $('.materialboxed').materialbox();
+       });
+    </script>
+}

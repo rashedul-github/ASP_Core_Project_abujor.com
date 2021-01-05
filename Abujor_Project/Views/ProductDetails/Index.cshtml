@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ProductDetail>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>View product details</h4>
+<table class="responsive-table">
+    <thead>
+        <tr>
+            <th>Size</th>
+            <th>Quantity</th>
+            <th>Color</th>
+            <th>Description</th>
+            <th>Product</th>
+            <th>@*<a asp-action="Create" asp-controller="ProductDetails">Add</a>*@</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var d in Model)
+        {
+            <tr>
+                <td>@d.Size</td>
+                <td>@d.Quantity</td>
+                <td>@d.Color</td>
+                <td>@d.Description</td>
+                <td>@d.Product.ProductModel</td>
+                <td>
+                    <a asp-action="Edit" asp-controller="ProductDetails" asp-route-id="@d.ProductDetailId">Edit</a> |
+                    <a asp-action="Delete" asp-controller="ProductDetails" asp-route-id="@d.ProductDetailId" style="color:red;">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

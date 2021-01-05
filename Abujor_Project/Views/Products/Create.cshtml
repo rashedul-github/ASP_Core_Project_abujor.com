@@ -1,0 +1,83 @@
+﻿@model ProductVM
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Product create here.</h4>
+
+<hr />
+<div class="row" style="display:flex;justify-content:center">
+    <div class="col s10">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <input asp-for="ProductModel" class="validate" />
+                    <label asp-for="ProductModel"></label>
+                    <span asp-validation-for="ProductModel" style="color:red;"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <input asp-for="ProductPrice" class="validate" />
+                    <label asp-for="ProductPrice"></label>
+                    <span asp-validation-for="ProductPrice" style="color:red;"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <select class="form-control"
+                            asp-for="CategoryId"
+                            asp-items="@(new SelectList(ViewBag.GetCategories, "CategoryId","CategoryName"))">
+                        <option value="">- Select -</option>
+                    </select>
+                    <label>Category*</label>
+                    <span asp-validation-for="CategoryId" style="color:red;"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <label>
+                        <input asp-for="Status" type="checkbox" />
+                        <span>Status</span>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="file-field input-field col s8">
+                    <div class="btn btn-small">
+                        <span>Picture*</span>
+                        <input type="file" asp-for="Picture" />
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                    <span asp-validation-for="Picture" style="color:red;"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <button type="submit" class="btn btn-small">Save</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script>
+        $(document).ready(() => {
+            $('select').formSelect();
+        });
+    </script>
+    <script src="~/libs/validate/jquery.validate.js"></script>
+    <script src="~/libs/validate/jquery.validate.unobtrusive.js"></script>
+}
+

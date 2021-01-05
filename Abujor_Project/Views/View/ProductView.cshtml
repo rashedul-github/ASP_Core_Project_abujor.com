@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "ProductView";
+}
+
+@section styles{
+    <style>
+        .second_image {
+            height: 200px;
+            max-height: 200px;
+            object-fit: contain;
+        }
+    </style>
+}
+
+<h4>Our Collections</h4>
+
+<div class="row">
+    @foreach (var p in Model)
+    {
+        <div class="col s6 m3">
+            <div class="card">
+                <div class="card-image">
+                    <img class="materialboxed second_image" src="@p.Picture">
+                </div>
+                <div class="card-content">
+                    <p>Model: @p.ProductModel</p>
+                    <p>Price: BTD @p.ProductPrice.ToString("0.00")</p>
+                    <p>Status: @(p.Status ? "Available" : "Not-Available")</p>
+                </div>
+                <div class="card-action">
+                    <a asp-action="proDetail" asp-controller="View" asp-route-id="@p.ProductId">Product Detail</a>|
+                    <a asp-action="Create" asp-controller="View" asp-route-id="@p.ProductId">Order Now</a>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+<div style="display:flex;justify-content:center;padding-bottom:50px;">
+    <a asp-action="Index" asp-controller="View">Back to list</a>
+</div>
+
+@section scripts{
+    <script>
+       $(document).ready(() => {
+           $('.materialboxed').materialbox();
+       });
+    </script>
+}

@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <environment include="Development">
+        <link href="~/libs/materialize/css/materialize.css" rel="stylesheet" />
+        <style>
+            .nav-container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .top-container {
+                padding-left: 25px;
+                padding-right: 25px;
+            }
+
+            .nav-trigger {
+                margin-right: 10px;
+            }
+
+            .circle-profile {
+                height: 40px;
+                width: 40px;
+                border-radius: 40px;
+                margin: 8px 4px 4px 4px;
+                background-color: #ffffff;
+                /*border: 1px solid #eeeeee;*/
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+                transition: 1s ease-out;
+            }
+
+            /*
+                Sidenav styles
+            */
+            .side-nav {
+                width: 260px;
+            }
+
+                .side-nav li > a {
+                    padding: 0 16px;
+                    border-bottom: solid 1px #e0e0e0;
+                }
+
+                .side-nav li ul li > a {
+                    padding: 0 32px;
+                    border-bottom: solid 1px #e0e0e0;
+                }
+
+            li.no-collapse {
+                padding-left: 0px;
+                border-bottom: solid 1px #e0e0e0;
+            }
+
+                li.no-collapse > a {
+                    padding: 0 16px;
+                }
+
+            .side-nav .divider {
+                margin: 0;
+                height: 8px;
+                border-bottom: 1px solid #e0e0e0;
+                background-color: transparent;
+            }
+
+            .top-level-header {
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            .sidenav-header {
+                /*background: url("/assets/background-design-trends-368x246.jpg") no-repeat center center;*/
+                background-size: cover;
+                margin-bottom: 0;
+                padding: 15px 0 0 5px;
+            }
+
+                .sidenav-header .row {
+                    margin-bottom: 0;
+                }
+
+            .sidenav-footer {
+                margin-bottom: 0;
+                padding: 0;
+            }
+
+                .sidenav-footer .row {
+                    margin-bottom: 0;
+                }
+
+                    .sidenav-footer .row .social-icons a {
+                        opacity: 0.5;
+                        padding: 0;
+                        text-align: center;
+                    }
+
+                        .sidenav-footer .row .social-icons a:hover {
+                            background-color: inherit;
+                            opacity: 1;
+                        }
+            img {
+                width: 20px;
+                height: 20px;
+                vertical-align: middle
+            }
+
+            span {
+                padding-left: 7px;
+            }
+        </style>
+    </environment>
+    @RenderSection("styles", false)
+</head>
+<body>
+    <ul id='dropdown1' class='dropdown-content'>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <li>
+                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button type="submit" class="waves-effect waves-light btn-small">Logoff</button>
+                </form>
+            </li>
+
+
+        }
+        else
+        {
+            <li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
+            <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+        }
+    </ul>
+    <nav>
+        <div class="nav-wrapper nav-container green darken-4">
+            <a href="#" data-target="slide-out" class="sidenav-trigger show-on-medium-and-up"><i class="material-icons">menu</i></a>
+            <a href="#" class="brand-logo">
+                <div style="display:flex; flex-direction:row;justify-content:flex-start; align-items:center">
+                    <img src="~/Pictures/cart.svg" class="circle-profile"><h6 style="color:white;"><span>gifary.com</span></h6>
+                </div>
+            </a>
+            <ul id="nav-mobile" class="right show-on-medium-and-down">
+                
+                <li><a class='dropdown-trigger2' href='#' data-target='dropdown3'>DROP ME!</a></li>
+                <li><a href="#!" class='dropdown-trigger' data-target='dropdown1'><i class="material-icons">more_vert</i></a></li>
+            </ul>
+        </div>
+    </nav>
+    <ul id="slide-out" class="sidenav">
+        <li class="sidenav-header green darken-4">
+            <div class="row">
+                <div style="display:flex; flex-direction:row;justify-content:flex-start; align-items:center">
+                    <img src="~/Pictures/cart.svg" class="circle-profile"><h6 style="color:white;"><span>gifary.com</span></h6>
+                </div>
+            </div>
+        </li>
+        <li>
+            <a href="@Url.Action("Index","Home")"><i class="material-icons left">home</i> Home</a>
+        </li>
+        <li><div class="divider"></div></li>
+        <li>
+            <a class='dropdown-trigger1' href='#' data-target='dropdown2'><i class="material-icons left">lock</i> Admin Pages</a>
+        </li>
+        <li><div class="divider"></div></li>
+    </ul>
+    <ul id='dropdown2' class='dropdown-content'>
+        <li><a href="@Url.Action("Index","Categories")">Category</a></li>
+        <li><a href="@Url.Action("Index","Products")">Product</a></li>
+        <li><a href="@Url.Action("Index","ProductDetails")">ProductDetail</a></li>
+        <li><a href="@Url.Action("Index","Order")">Order</a></li>
+    </ul>
+    <ul id='dropdown3' class='dropdown-content'>
+        <li><a href="@Url.Action("Index","Home")">Home</a></li>
+        <li><a href="@Url.Action("Index","View")">Product Category</a></li>
+        <li><a href="@Url.Action("viewAllProducts","View")">All Products</a></li>
+    </ul>
+    <div class="top-container">
+        @RenderBody()
+    </div>
+
+
+    <footer class="page-footer" style="background-color:#433d3c;padding-top:50px;">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12" style="padding-top:0px;padding-bottom:0px;">
+                    <h5 class="white-text">Contact Us.</h5>
+                    <h6 class="grey-text text-lighten-4">Proprietor: Abu Jor Gifari</h6>
+                    <p>Contact Number: 01757818851</p>
+                    <p>E-Mail: abujor1999@gmail.com</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Others Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!"><img src="~/Pictures/facebook.svg" width="20" /><span>facebook.com/gifarybd</span></a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!"><img src="~/Pictures/youtube.svg" width="20" /><span>youtube.com/gifarybd</span></a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!"><img src="~/Pictures/whatsapp.svg" width="20" /><span> what's app</span></a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!"><img src="~/Pictures/instagram.svg" width="20" /><span>Instragram</span></a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © @DateTime.Now.Year, gifary.com
+            </div>
+        </div>
+    </footer>
+
+    <environment include="Development">
+        <script src="~/libs/jquery/jquery.js"></script>
+        <script src="~/libs/materialize/js/materialize.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('.sidenav').sidenav();
+                $('.collapsible').collapsible();
+                $('.dropdown-trigger').dropdown();
+                $('.dropdown-trigger1').dropdown();
+                $('.dropdown-trigger2').dropdown();
+            });
+        </script>
+    </environment>
+    @RenderSection("scripts", false)
+</body>
+</html>
+

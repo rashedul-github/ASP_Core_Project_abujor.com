@@ -1,0 +1,78 @@
+﻿@model ProductDetail
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Product create here.</h4>
+
+<hr />
+<div class="row" style="display:flex;justify-content:center">
+    <div class="col s10">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProductId" value="@ViewBag.ProductId"/>
+            <div class="row">
+                <div class="input-field col s8">
+                    <input asp-for="Size" class="validate" />
+                    <label asp-for="Size"></label>
+                    <span asp-validation-for="Size" style="color:red;"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <input asp-for="Quantity" class="validate" />
+                    <label asp-for="Quantity"></label>
+                    <span asp-validation-for="Quantity" style="color:red;"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <input asp-for="Color" class="validate" />
+                    <label asp-for="Color"></label>
+                    <span asp-validation-for="Color" style="color:red;"></span>
+                </div>
+            </div>
+            @*<div class="row">
+                <div class="input-field col s8">
+                    <select class="form-control"
+                            asp-for="ProductId"
+                            asp-items="@(new SelectList(ViewBag.GetProduct, "ProductId","ProductModel"))">
+                        <option value="">- Select -</option>
+                    </select>
+                    <label>Product*</label>
+                    <span asp-validation-for="ProductId" style="color:red;"></span>
+                </div>
+            </div>*@
+            <div class="row">
+                <div class="input-field col s8">
+                    <textarea asp-for="Description" class="materialize-textarea"></textarea>
+                    <label asp-for="Description"></label>
+                    <span asp-validation-for="Description" style="color:red;"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s8">
+                    <button type="submit" class="btn btn-small">Save</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script>
+        $(document).ready(() => {
+            $('select').formSelect();
+        });
+    </script>
+    <script src="~/libs/validate/jquery.validate.js"></script>
+    <script src="~/libs/validate/jquery.validate.unobtrusive.js"></script>
+}

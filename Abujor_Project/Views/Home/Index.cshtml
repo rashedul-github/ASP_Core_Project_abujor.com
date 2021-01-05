@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section styles{
+<environment include="Development">
+    <style>
+        .slider .indicators .indicator-item {
+            background-color: #666666;
+            border: 3px solid #ffffff;
+            -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+            -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        }
+
+            .slider .indicators .indicator-item.active {
+                background-color: #ffffff;
+            }
+
+        .slider {
+            
+            max-width:60%;
+            margin: 0 auto;
+        }
+
+            .slider .indicators {
+                bottom: 60px;
+                z-index: 100;
+                /* text-align: left; */
+            }
+    </style>
+</environment>
+}
+<h4></h4>
+<div class="slider">
+    <ul class="slides">
+        <li>
+            <img class="responsive-img" src="~/Pictures/school.jpg"> <!-- random image -->
+            <div class="caption center-align">
+                <h3>This is our big Tagline!</h3>
+                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            </div>
+        </li>
+        <li>
+            <img class="responsive-img" src="~/Pictures/1.jpg"> <!-- random image -->
+            <div class="caption left-align">
+                <h3>Left Aligned Caption</h3>
+                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            </div>
+        </li>
+        <li>
+            <img class="responsive-img" src="~/Pictures/2.jpg"> <!-- random image -->
+            <div class="caption right-align">
+                <h3>Right Aligned Caption</h3>
+                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            </div>
+        </li>
+        <li>
+            <img class="responsive-img" src="~/Pictures/3.jpg"> <!-- random image -->
+            <div class="caption center-align">
+                <h3>This is our big Tagline!</h3>
+                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            </div>
+        </li>
+    </ul>
+</div>
+<h5></h5>
+@section scripts{
+    <environment include="Development">
+        <script>
+            $(document).ready(function () {
+                $('.slider').slider();
+            });
+        </script>
+    </environment>
+}
+

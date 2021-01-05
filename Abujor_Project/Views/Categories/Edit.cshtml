@@ -1,0 +1,58 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h4>Edit category here.</h4>
+<hr />
+<div class="row" style="display:flex;justify-content:center">
+    <div class="col s8">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CategoryId" />
+            <div class="row">
+                <div class="input-field col s6">
+                    <input asp-for="CategoryName" class="validate" />
+                    <label asp-for="CategoryName"></label>
+                    <span asp-validation-for="CategoryName" style="color:red;"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <img src="@Model.Image" width="40" />
+                </div>               
+            </div>
+            <div class="row">
+                
+                <div class="file-field input-field col s6">
+                    <div class="btn btn-small">
+                        <span>Image*</span>
+                        <input type="file" asp-for="Image" />
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                    <span asp-validation-for="Image" style="color:red;"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <button type="submit" class="btn btn-small">Update</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script src="~/libs/validate/jquery.validate.js"></script>
+    <script src="~/libs/validate/jquery.validate.unobtrusive.js"></script>
+}
+

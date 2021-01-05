@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "viewAllProducts";
+}
+
+@section styles{
+    <link href="~/libs/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    <style>
+        .forth_image {
+            height: 200px;
+            max-height: 200px;
+            object-fit: contain;
+        }
+    </style>
+}
+
+<form asp-action="viewAllProducts" asp-controller="View" method="post">
+    <div class="row" style="padding-top:50px;">
+        <div class="col s6 offset-s2">
+            <input type="text" id="postModel" name="postModel" placeholder="Enter model here" />
+        </div>
+        <div class="col s2" style="padding-left:0px;margin-left:0px;margin-top:5px;">
+            <button class="btn waves-effect waves-light btn-small" type="submit"><i class="material-icons right">search</i> Search</button>
+        </div>
+    </div>
+</form>
+
+
+<div class="row">
+    @foreach (var p in Model)
+    {
+        <div class="col s6 m3">
+            <div class="card">
+                <div class="card-image">
+                    <img class="materialboxed forth_image" src="@p.Picture">
+                </div>
+                <div class="card-content">
+                    <p>Category: @p.Category.CategoryName</p>
+                    <p>Model: @p.ProductModel</p>
+                    <p>Price: BTD @p.ProductPrice.ToString("0.00")</p>
+                    <p>Status: @(p.Status ? "Available" : "Not-Available")</p>
+                </div>
+                <div class="card-action">
+                    <a asp-action="proDetail" asp-controller="View" asp-route-id="@p.ProductId">Product Detail</a>|
+                    <a asp-action="Create" asp-controller="View" asp-route-id="@p.ProductId">Order Now</a>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+<div style="display:flex;justify-content:center;padding-bottom:50px;">
+    <a asp-action="Index" asp-controller="View">Back to list</a>
+</div>
+
+@section scripts{
+    <script src="~/libs/jquery-ui/jquery-ui.js"></script>
+    <script>
+        $(document).ready(() => {
+            $('.materialboxed').materialbox();
+            $("#postModel").autocomplete({
+                source: '/View/Search'
+            });
+        });
+    </script>
+}
+

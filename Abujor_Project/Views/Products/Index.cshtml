@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>View products</h4>
+<table class="responsive-table">
+    <thead>
+        <tr>
+            <th>Picture</th>
+            <th>ProductModel</th>
+            <th>ProductPrice</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th><a asp-action="Create" asp-controller="Products">Add</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td><img src="@p.Picture" width="40" /></td>
+                <td>@p.ProductModel</td>
+                <td>BTD @p.ProductPrice.ToString("0.00")</td>
+                <td>@p.Category.CategoryName</td>
+                <td>@(p.Status?"Available":"Not-Availabe")</td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Products" asp-route-id="@p.ProductId">Edit</a> |
+                    <a asp-action="Details" asp-controller="ProductDetails" asp-route-id="@p.ProductId">Details</a> |
+                    <a asp-action="Delete" asp-controller="Products" asp-route-id="@p.ProductId" style="color:red;">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
